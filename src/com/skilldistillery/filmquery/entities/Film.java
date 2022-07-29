@@ -15,10 +15,11 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
-
 	private List<Actor> actorList;
+	private String language;
 
 	public Film() {
+		super();
 	}
 
 	public Film(int filmId, String title, String desc, int releaseYear, int langId, int rentDur, double rate,
@@ -36,6 +37,11 @@ public class Film {
 		this.specialFeatures = features;
 		this.actorList = actors;
 
+	}
+
+	public void printLimitedDetails() {
+		System.out.println("Title: " + title + "\nRelease year:  " + releaseYear + "\nRating: " + rating
+				+ "\nDescription: " + description + "\nLanguage: " + language + "\nCast: " + actorList);
 	}
 
 	public int getFilmId() {
@@ -134,10 +140,18 @@ public class Film {
 		this.actorList = actorList;
 	}
 
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(actorList, description, filmId, languageId, length, rating, releaseYear, rentDuration,
-				rentalRate, replacementCost, specialFeatures, title);
+		return Objects.hash(actorList, description, filmId, languageId, language, length, rating, releaseYear,
+				rentDuration, rentalRate, replacementCost, specialFeatures, title);
 	}
 
 	@Override
@@ -150,8 +164,8 @@ public class Film {
 			return false;
 		Film other = (Film) obj;
 		return Objects.equals(actorList, other.actorList) && Objects.equals(description, other.description)
-				&& filmId == other.filmId && languageId == other.languageId && length == other.length
-				&& Objects.equals(rating, other.rating) && releaseYear == other.releaseYear
+				&& filmId == other.filmId && Objects.equals(language, other.language) && languageId == other.languageId
+				&& length == other.length && Objects.equals(rating, other.rating) && releaseYear == other.releaseYear
 				&& rentDuration == other.rentDuration
 				&& Double.doubleToLongBits(rentalRate) == Double.doubleToLongBits(other.rentalRate)
 				&& Double.doubleToLongBits(replacementCost) == Double.doubleToLongBits(other.replacementCost)
@@ -160,12 +174,12 @@ public class Film {
 
 	@Override
 	public String toString() {
-		String s =  "Film Id: " + filmId + ", Title: " + title + ", Description: " + description + ", ReleaseYear: "
-				+ releaseYear + ", Language Id: " + languageId + ", Rental Duration: " + rentDuration + ", Rental Rate: "
-				+ rentalRate + ", Length: " + length + ", Replacement Cost: " + replacementCost + ", Rating: " + rating
-				+ ", Special Features: " + specialFeatures + " \nActors:\n";
+		String s = "Film Id: " + filmId + ", Title: " + title + ", Description: " + description + ", ReleaseYear: "
+				+ releaseYear + ", Language Id: " + languageId + ", Language: " + language + ", Rental Duration: "
+				+ rentDuration + ", Rental Rate: " + rentalRate + ", Length: " + length + ", Replacement Cost: "
+				+ replacementCost + ", Rating: " + rating + ", Special Features: " + specialFeatures + " \nActors:\n";
 		for (Actor actor : actorList) {
-			s+= actor;
+			s += actor;
 		}
 		return s;
 	}

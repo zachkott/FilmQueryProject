@@ -81,7 +81,7 @@ public class FilmQueryApp {
 			int filmId = sc.nextInt();
 			Film film = db.findFilmById(filmId);
 			if(film !=null) {
-				System.out.println(film);
+				film.printLimitedDetails();
 				
 			}  else {
 				System.out.println("Sorry, there is no film with that ID.");
