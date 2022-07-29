@@ -160,10 +160,14 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Film Id: " + filmId + ", Title: " + title + ", Description: " + description + ", ReleaseYear: "
+		String s =  "Film Id: " + filmId + ", Title: " + title + ", Description: " + description + ", ReleaseYear: "
 				+ releaseYear + ", Language Id: " + languageId + ", Rental Duration: " + rentDuration + ", Rental Rate: "
 				+ rentalRate + ", Length: " + length + ", Replacement Cost: " + replacementCost + ", Rating: " + rating
-				+ ", Special Features: " + specialFeatures + " \nActors: " + actorList;
+				+ ", Special Features: " + specialFeatures + " \nActors:\n";
+		for (Actor actor : actorList) {
+			s+= actor;
+		}
+		return s;
 	}
 
 }

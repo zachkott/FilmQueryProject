@@ -66,7 +66,7 @@ public class Actor {
 		builder.append(firstName);
 		builder.append(", Last Name: ");
 		builder.append(lastName);
-		builder.append(" ");
+		builder.append(" \n");
 		return builder.toString();
 	}
 
