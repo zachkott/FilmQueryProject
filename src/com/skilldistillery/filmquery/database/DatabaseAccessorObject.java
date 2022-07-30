@@ -123,10 +123,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	public String convertLanguageId(int filmId) throws SQLException {
 		conn = DriverManager.getConnection(URL, user, pass);
 
-
 		String sql = "SELECT language.name FROM language JOIN film on film.language_id = language.id WHERE film.id = ?";
 		String lang = "";
-		
+
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, filmId);
 		ResultSet rs = stmt.executeQuery();
@@ -144,10 +143,30 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 	@Override
 	public List<Film> findFilmByKeyword(String keyword) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		List<Film> films = new ArrayList<>();
 
-	
+		conn = DriverManager.getConnection(URL, user, pass);
+
+		String sql = "SELECT * FROM film WHERE title LIKE ? OR description LIKE ?";
+
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		keyword = "%" + keyword + "%";
+		stmt.setString(1, keyword);
+		stmt.setString(2, keyword);
+		ResultSet rs = stmt.executeQuery();
+
+		while (rs.next()) {
+			int id = rs.getInt("id");
+
+			films.add(findFilmById(id));
+
+		}
+		rs.close();
+		stmt.close();
+
+		conn.close();
+
+		return films;
+	}
 
 }

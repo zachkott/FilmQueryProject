@@ -39,9 +39,12 @@ public class Film {
 
 	}
 
-	public void printLimitedDetails() {
-		System.out.println("Title: " + title + "\nRelease year:  " + releaseYear + "\nRating: " + rating
-				+ "\nDescription: " + description + "\nLanguage: " + language + "\nCast: " + actorList);
+	// method to be called in sub menu when user wishes to see all details
+	public void printAllDetails(int filmId) {
+		System.out.println("Film ID: " + filmId + "\nTitle: " + title + "\nRelease year:  " + releaseYear + "\nRating: "
+				+ rating + "\nDescription: " + description + "\nLanguage: " + language + "\nRental Duration"
+				+ rentDuration + "\nRental Rate: " + rentalRate + "\nLength: " + length + "\nReplacement Cost: "
+				+ replacementCost + "\nSpecial Features: " + specialFeatures + "\nCast: " + actorList);
 	}
 
 	public int getFilmId() {
@@ -174,12 +177,11 @@ public class Film {
 
 	@Override
 	public String toString() {
-		String s = "Film Id: " + filmId + ", Title: " + title + ", Description: " + description + ", ReleaseYear: "
-				+ releaseYear + ", Language Id: " + languageId + ", Language: " + language + ", Rental Duration: "
-				+ rentDuration + ", Rental Rate: " + rentalRate + ", Length: " + length + ", Replacement Cost: "
-				+ replacementCost + ", Rating: " + rating + ", Special Features: " + specialFeatures + " \nActors:\n";
+		String s = "\n\nFilm Id: " + filmId + "\nFilm Title: " + title + "\nDescription: " + description
+				+ "\nReleaseYear: " + releaseYear + "\nRating: " + rating + "\nLanguage: " + language + " \nActors:\n";
 		for (Actor actor : actorList) {
 			s += actor;
+
 		}
 		return s;
 	}
