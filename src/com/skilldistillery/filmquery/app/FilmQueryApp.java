@@ -30,32 +30,36 @@ public class FilmQueryApp {
 	private void startUserInterface(Scanner sc) {
 		mainMenu();
 		boolean continueLoop = true;
+		try {
+			do {
+				int menuOption = sc.nextInt();
 
-		do {
-			int menuOption = sc.nextInt();
+				switch (menuOption) {
+				case 1:
+					listByFilmId(sc);
+					break;
 
-			switch (menuOption) {
-			case 1:
-				listByFilmId(sc);
-				break;
+				case 2:
+					listByKeyword(sc);
+					break;
 
-			case 2:
-				listByKeyword(sc);
-				break;
+				case 3:
+					terminateApp();
+					break;
 
-			case 3:
-				terminateApp();
-				break;
+				default:
+					System.out.println("Invalid input. Please try again.");
+					break;
 
-			default:
-				System.out.println("Invalid input. Please try again.");
-				break;
+				}
+				mainMenu();
 
-			}
-			mainMenu();
-
-		} while (continueLoop);
-
+			} while (continueLoop);
+		} catch (Exception e) {
+			System.out.println("Invalid input. Please try again.");
+			sc.nextLine();
+			startUserInterface(sc);
+		}
 	}
 
 	public void mainMenu() {
