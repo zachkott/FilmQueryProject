@@ -41,10 +41,10 @@ public class Film {
 
 	// method to be called in sub menu when user wishes to see all details
 	public void printAllDetails(int filmId) {
-		System.out.println("Film ID: " + filmId + "\nTitle: " + title + "\nRelease year:  " + releaseYear + "\nRating: "
-				+ rating + "\nDescription: " + description + "\nLanguage: " + language + "\nRental Duration"
-				+ rentDuration + "\nRental Rate: " + rentalRate + "\nLength: " + length + "\nReplacement Cost: "
-				+ replacementCost + "\nSpecial Features: " + specialFeatures + "\nCast: " + actorList);
+		System.out.println("Film ID: " + filmId + "\nTitle: " + title + "\nRelease year: " + releaseYear + "\nRating: "
+				+ rating + "\nDescription: " + description + "\nLanguage: " + language + "\nRental Duration: "
+				+ rentDuration + "\nRental Rate: " + rentalRate + "\nLength: " + length +"mins" + "\nReplacement Cost: $"
+				+ replacementCost + "\nSpecial Features: " + specialFeatures + "\nCast: \n" + actorList);
 	}
 
 	public int getFilmId() {

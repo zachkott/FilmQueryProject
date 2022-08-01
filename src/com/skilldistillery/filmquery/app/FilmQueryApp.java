@@ -41,6 +41,9 @@ public class FilmQueryApp {
 
 				case 2:
 					listByKeyword(sc);
+
+					subMenu(sc);
+
 					break;
 
 				case 3:
@@ -117,8 +120,11 @@ public class FilmQueryApp {
 			if (keyFilm.size() > 0) {
 				System.out.println(keyFilm);
 				System.out.println();
+				subMenu();
+				
 			} else {
 				System.out.println("There are no results that match your search.");
+				listByKeyword(sc);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -131,4 +137,59 @@ public class FilmQueryApp {
 		System.exit(0);
 	}
 
+	public void subMenu(Scanner sc) throws SQLException {
+		boolean keepGoing = true;
+
+		try {
+			do {
+
+				int response = sc.nextInt();
+
+				switch (response) {
+				case 1:
+					System.out.println("Please enter the id of the film you would like to learn more about: \n");
+
+					int filmId = sc.nextInt();
+					Film film = db.findFilmById(filmId);
+					if (film != null) {
+						film.printAllDetails(filmId);
+
+					} else {
+						System.out.println("Sorry, there is no film with that ID.");
+						sc.nextLine();
+						startUserInterface(sc);
+
+					}
+
+					startUserInterface(sc);
+					break;
+
+				case 2:
+					startUserInterface(sc);
+					break;
+
+			default:
+				System.out.println("Try again");
+				subMenu(sc);
+				break;
+				}
+			} while (keepGoing);
+		} catch (Exception e) {
+			System.out.println("Invalid input. Returning to main menu.");
+			sc.nextLine();
+			startUserInterface(sc);
+		}
+	}
+	
+	public void subMenu() {
+		System.out.println("------------------------------------");
+		System.out.println("-           -Sub Menu-             -");
+		System.out.println("-                                  -");
+		System.out.println("-  1.) View all film details       -");
+		System.out.println("-  2.) Return to main menu         -");
+		System.out.println("-                                  -");
+		System.out.println("------------------------------------");
+		System.out.println();
+		System.out.println("\nPlease choose an  option from the menu: \n");
+	}
 }
